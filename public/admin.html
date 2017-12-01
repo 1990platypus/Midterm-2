@@ -1,0 +1,26 @@
+<html>
+<head>
+  <title>Ordering Products</title>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+  <script src="javascripts/app.js"></script>
+
+</head>
+<body ng-app="product" ng-controller="MainCtrl">
+<div class="margin-left: 5em;"> 
+  <h1>Administrative Interface</h1>
+  <form ng-submit="addProduct()">
+    Product Name<input type="text" ng-model="name"></input>
+    Price<input type="text" ng-model="price"></input>
+    Picture URL<input type="text" ng-model="formImage"></input>
+    <button type="submit">Add Product</button>
+  </form>
+
+  <h1>Current Products</h1>
+  <div ng-repeat="product in products | orderBy: ['-upvotes','Name']">
+    <span class="glyphicon glyphicon-remove" ng-click="delete(product)"></span>
+    {{product.Name}} - price {{product.Price}} - ordered {{products.votes}} {{product.Image}}
+  </div>
+</div>
+</body>
+</html>
