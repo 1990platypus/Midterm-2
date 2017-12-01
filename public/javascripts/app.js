@@ -5,10 +5,13 @@ angular.module('product', [])
     $scope.products = [];
     $scope.inventory = [];
     $scope.addComment = function() {
-      var newproduct = {Name:$scope.formContent,upvotes:0};
-      $scope.formContent='';
+      var newproduct = {Name:$scope.name,Price:$scope.price,Image:$scope.formImage,upvotes:0};
+      $scope.name='';
+      $scope.price='';
+      $scope.formImage='';
       $http.post('/product', newproduct).success(function(data){
         $scope.products.push(data);
+        $scope.inventory.push(data);
       });
     };
     $scope.upvote = function(product) {
